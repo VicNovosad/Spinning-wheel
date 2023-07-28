@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        #wheel {
+            position: relative;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            margin: 0 auto;
+            transform-origin: center;
+            transition: transform 5s;
+            display: flex;
+        }
+
+        #section1 {
+            fill: red;
+        }
+        #section2 {
+            fill: green;
+        }
+        #section3 {
+            fill: blue;
+        }
+        #section4 {
+            fill: yellow;
+        }
+
+        #section5 {
+            fill: purple;
+        }
+
+        #section6 {
+            fill: orange;
+        }
+
+        .btn-wrap{
+            display: flex;
+            justify-content: center;
+        }
+
+        #arrow {
+            position: relative;
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 20px solid black;
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        #wheel svg {
+            width: 100%;
+            height: auto;
+        }
+
+        text {
+            font-size: 10px;
+            fill: black;
+            text-anchor: middle;
+            dominant-baseline: middle;
+            pointer-events: none;
+            /* max-width: 10px; */
+        }
+
+        a use {
+            /* fill: blue */
+        }
+
+        a use:hover {
+            /* fill: red */
+        }
+    </style>
+</head>
+
+<body>
+    <div id="arrow"></div>
+    <div id="wheel">
+        <svg viewBox="-50 -50 100 100" width="300">
+            <defs>
+                <path id="sectorpath"
+                    d="M0,0 L38.97114317029974,-22.499999999999996 A45,45 0 0 1 38.97114317029974,22.499999999999996 L0,0 A0,0 0 0 0 0,0">
+                </path>
+                <mask id="themask">
+                    <use xlink:href="#sectorpath" style="stroke:#000; stroke-width:3; fill: #ffffff"></use>
+                </mask>
+                <use xlink:href="#sectorpath" id="sector" style="mask: url(#themask)"></use>
+            </defs>
+            <a xlink:href="#">
+                <g id="section1">
+                    <use xlink:href="#sector" transform="rotate(-90)"></use>
+                    <text x="0" y="-22.5">+</text>
+                </g>
+            </a>
+            <a xlink:href="#">
+                <g id="section2">
+                    <use xlink:href="#sector" transform="rotate(-30)"></use>
+                    <text x="19.48557158514987" y="-11.25">-</text>
+                </g>
+            </a>
+            <a xlink:href="#">
+                <g id="section3">
+                    <use xlink:href="#sector" transform="rotate(30)"></use>
+                    <text x="19.48557158514987" y="11.249999999999996">+4</text>
+                </g>
+            </a>
+            <a xlink:href="#">
+                <g id="section4">
+                    <use xlink:href="#sector" transform="rotate(90)"></use>
+                    <text x="1.3777276490407724e-15" y="22.5">10T</text>
+                </g>
+            </a>
+            <a xlink:href="#">
+                <g id="section5">
+                    <use xlink:href="#sector" transform="rotate(150)"></use>
+                    <text x="-19.485571585149867" y="11.250000000000007">Q</text>
+                </g>
+            </a>
+            <a xlink:href="#">
+                <g id="section6">
+                    <use xlink:href="#sector" transform="rotate(210)"></use>
+                    <text x="-25" y="-9">delete</text>
+                    <text x="-25" y="-21.249999999999986">pet</text>
+                </g>
+            </a>
+        </svg>
+    </div>
+    <div class="btn-wrap">
+        <button onclick="spin()">Spin</button>
+    </div>
+
+    <script>
+        function spin() {
+            var rotations = Math.floor(Math.random() * 10) + 1; // 1 to 10 rotations
+            var degree = rotations * Math.floor(Math.random() * 360) + 1;
+            document.getElementById('wheel').style.transform = 'rotate(' + degree + 'deg)';
+        }
+    </script>
+</body>
+
+</html>
